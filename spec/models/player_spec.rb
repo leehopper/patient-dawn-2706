@@ -21,9 +21,8 @@ RSpec.describe Player do
   describe 'class_methods' do
     describe '#average_age' do
       it 'returns the average age of all players' do
-        expected = (@player_1.age + @player_2.age + @player_3.age + @player_4.age + @player_5.age + @player_6.age) / (@team_1.players.count + @team_2.players.count)
 
-        expect(Player.average_age).to eq(expected)
+        expect(Player.average_age).to eq(34)
       end
     end
   end

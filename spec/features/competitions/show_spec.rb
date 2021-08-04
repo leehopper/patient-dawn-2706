@@ -10,10 +10,22 @@ RSpec.describe 'the competition show' do
     @team_3 = @competition_1.teams.create!(hometown: 'Denver', nickname: 'climbers')
 
     @team_4 = @competition_2.teams.create!(hometown: 'Colorado Springs', nickname: 'thunder')
+
+    @player_1 = @team_1.players.create!(name: 'Dame', age: 30)
+    @player_2 = @team_1.players.create!(name: 'CJ', age: 30)
+    @player_3 = @team_1.players.create!(name: 'Nurk', age: 28)
+
+    @player_4 = @team_2.players.create!(name: 'LeBron', age: 35)
+    @player_5 = @team_2.players.create!(name: 'MJ', age: 45)
+    @player_6 = @team_2.players.create!(name: 'Shaq', age: 40)
+
+    @player_7 = @team_3.players.create!(name: 'Steph', age: 32)
+    @player_8 = @team_3.players.create!(name: 'Klay', age: 30)
+    @player_9 = @team_3.players.create!(name: 'Green', age: 29)
   end
 
   describe 'display' do
-    it 'shows competiton name, location, and sport' do
+    it 'shows competiton name, location, sport, and average player age' do
       visit competition_path(@competition_1.id)
 
       within("#header") do
@@ -24,6 +36,7 @@ RSpec.describe 'the competition show' do
       within("#attributes") do
         expect(page).to have_content("Location: #{@competition_1.location}")
         expect(page).to have_content("Sport: #{@competition_1.sport}")
+        expect(page).to have_content("Players Average Age: #{@competition_1.players.average_age}")
 
         expect(page).to_not have_content("Location: #{@competition_2.location}")
         expect(page).to_not have_content("Sport: #{@competition_2.sport}")
