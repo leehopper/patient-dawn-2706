@@ -10,7 +10,7 @@
 
 <div id='teams'>
   <h2>Teams:</h2>
-  <p><%= button_to "Register a new team", competition_teams_path(@competition.id), method: :post %></p>
+  <p><%= button_to "Register a new team", new_competition_team_path(@competition.id), method: :get %></p>
   <% @competition.teams.each.with_index do |team, index| %>
     <div id="team-<%= team.id %>">
       <p><b>Team <%= index + 1 %></b></p>

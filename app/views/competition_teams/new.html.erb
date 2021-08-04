@@ -1,0 +1,9 @@
+<h1>Register new team for <%= @competition.name %></h1>
+
+<%= form_with url: competition_teams_path(@competition.id), method: :post, local: true do |f| %>
+  <%= f.label :hometown %>
+  <%= f.text_field :hometown %>
+  <%= f.label :nickname %>
+  <%= f.text_field :nickname %>>
+  <%= f.submit "Submit"%>
+<% end %>
