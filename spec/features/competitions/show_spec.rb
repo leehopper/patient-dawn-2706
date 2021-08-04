@@ -73,20 +73,26 @@ RSpec.describe 'the competition show' do
     end
   end
 
-  xdescribe 'create a new team' do
+  describe 'create a new team' do
     it 'links to form to create new team that adds team to competion when submitted' do
       visit competition_path(@competition_1.id)
 
       within("#teams") do
         click_button("Register a new team")
+      end
 
-        expect(page).to have_content("Register new team for #{@competition_1.name}")
+      expect(page).to have_content("Register new team for #{@competition_1.name}")
 
-        fill_in 'Hometown', with: 'New Hometown'
-        fill_in 'Nickname', with: 'New Nickname'
-        click_button 'Submit'
+      fill_in 'Hometown', with: 'New Hometown'
+      fill_in 'Nickname', with: 'New Nickname'
+      click_button 'Submit'
 
-        expect(current_path).to eq(competition_path(@competition_1.id))
+      expect(current_path).to eq(competition_path(@competition_1.id))
+
+      within("#teams") do
+        expect(page).to have_content("Team 4")
+        expect(page).to have_content("Nickname: New Nickname")
+        expect(page).to have_content("Hometown: New Hometown")
       end
     end
   end
