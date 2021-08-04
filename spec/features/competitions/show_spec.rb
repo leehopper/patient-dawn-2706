@@ -43,11 +43,12 @@ RSpec.describe 'the competition show' do
       end
     end
 
-    it 'shows team nicknames and hometowns' do
+    it 'shows team nicknames and hometowns and link to add a team' do
       visit competition_path(@competition_1.id)
 
       within("#teams") do
         expect(page).to have_content("Teams:")
+        expect(page).to have_button("Register a new team")
         expect(page).to_not have_content("#{@team_4.nickname}")
         expect(page).to_not have_content("#{@team_4.hometown}")
 
@@ -68,6 +69,16 @@ RSpec.describe 'the competition show' do
           expect(page).to have_content("Nickname: #{@team_3.nickname}")
           expect(page).to have_content("Hometown: #{@team_3.hometown}")
         end
+      end
+    end
+  end
+
+  describe 'create a new team' do
+    it 'links to form to create new team that adds team to competion when submitted' do
+      visit competition_path(@competition_1.id)
+
+      within("#teams") do
+        click_button("Register a new team")
       end
     end
   end
