@@ -1,1 +1,19 @@
-<h1>Test</h1>
+<div id='header'>
+  <h1><%= @competition.name %></h1>
+</div>
+
+<div id='attributes'>
+  <p>Location: <%= @competition.location %></p>
+  <p>Sport: <%= @competition.sport %></p>
+</div>
+
+<div id='teams'>
+  <h2>Teams:</h2>
+  <% @competition.teams.each.with_index do |team, index| %>
+    <div id="team-<%= team.id %>">
+      <p><b>Team <%= index + 1 %></b></p>
+      <p>Nickname: <%= team.nickname %></p>
+      <p>Hometown: <%= team.hometown %></p>
+    </div>
+  <% end %>
+</div>
