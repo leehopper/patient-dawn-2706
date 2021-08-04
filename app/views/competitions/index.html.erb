@@ -1,0 +1,9 @@
+<div id='header'>
+<h1>Competitions Overview</h1>
+</div>
+
+<% @competitions.each do |competition| %>
+  <div id="competition-<%= competition.id %>">
+    <p><%= link_to "#{competition.name}", competition_path(competition.id) %></p>
+  </div>
+<% end %>
